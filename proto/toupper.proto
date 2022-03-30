@@ -1,0 +1,48 @@
+syntax = "proto3";
+package proto;
+option go_package = "/gen";
+
+// The service definition.
+service ToUpper{
+  // Sends a greeting
+  rpc Upper (UpperRequest) returns (UpperResponse) {}
+  rpc QueryUserInfo (QueryUserInfoReq) returns (QueryUserInfoResp) {}
+}
+
+// The request message
+message UpperRequest {
+  string name = 1;
+}
+
+// The response message
+message UpperResponse {
+  string message = 1;
+}
+
+// query user info request
+message QueryUserInfoReq{
+  string name = 1;
+  Base base = 2;
+}
+
+message QueryUserInfoResp{
+  UserInfo userInfo = 1;
+  BaseResp baseResp = 2;
+}
+
+message UserInfo{
+  int64 ID = 1;
+  string name = 2;
+  int32 gender = 3;
+  string hobby = 4;
+}
+
+message Base{
+  string caller = 1;
+  string logID = 2;
+}
+
+message BaseResp{
+  string status_message = 1;
+  int32 status_code = 2;
+}
